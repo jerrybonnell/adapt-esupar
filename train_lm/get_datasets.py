@@ -46,6 +46,9 @@ def datasets_from_pkl():
             bs_examples.append(bs)
     print((len(t_examples), len(b_examples), len(g_examples), len(bs_examples)))
 
+    with open("adapt_yasuoka_char_cvg_train.txt", "w") as f:
+        f.write("\n".join(t_examples + b_examples + g_examples))
+
     print(len(b_examples + g_examples))
     with open("baseline_notaiyo_yasuoka_char_cvg_train.txt", "w") as f:
         i = 0
