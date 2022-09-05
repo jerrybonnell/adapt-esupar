@@ -11,6 +11,8 @@ import os
 import re
 from rich.pretty import pprint
 
+cat_info_map = {}
+
 def load_dictionary():
     with open(f'char.def', 'r') as f:
         cat_info_list = f.read().split('\n')

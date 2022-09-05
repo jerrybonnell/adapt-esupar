@@ -8,12 +8,12 @@ from tqdm import tqdm
 
 console = Console()
 
-rules_conllu = glob.glob("../Rules2UD/annotation_041222_esupar/*.conllu")
+rules_conllu = glob.glob("../../Rules2UD/annotation_041222_esupar/*.conllu")
 
 CONFIG = 0
 if CONFIG == 0:
     adapt_conllu = glob.glob(
-        "../Rules2UD/annotation_053122_adapt_yasuoka_char_cvg_50_upos/*.conllu")
+        "../../Rules2UD/annotation_053122_adapt_yasuoka_char_cvg_50_upos/*.conllu")
     model = "jerrybonnell053122/adapt_yasuoka_char_cvg_50"
     experiment = "adapt_norules053122"
 elif CONFIG == 1:
@@ -41,7 +41,7 @@ else:
 
 print((model, experiment, adapt_conllu[0]))
 
-test_set = glob.glob("../../taiyo/jp/resources/test/*")
+test_set = glob.glob("../../jp/resources/test/*")
 test_set = [os.path.split(fn)[-1].split(".")[0] for fn in test_set]
 print(len(test_set))
 

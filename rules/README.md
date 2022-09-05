@@ -13,7 +13,15 @@ There are copyright issues with the corpora used in our research (TAIYO and BCCW
 
 ## Flagging differences in UD output
 
-We use the script `compare_with_pos.py` to generate discrepancies in UD output between ESUPAR and each of the four models tested.
+We use the script `compare_with_pos.py` to generate discrepancies in UD output between ESUPAR and each of the four models tested. Following shows a snippet of what these differneces look like:
+
+```
+('實は氣の毒な次第だといふ人があるけれども、',
+  [((('氣の毒',), ('ADJ',), ('acl',)),
+    (('氣', 'の', '毒'), ('NOUN', 'ADP', 'ADJ'), ('nsubj', 'case', 'acl'))),
+   ((('けれど', 'も'), ('SCONJ', 'ADP'), ('mark', 'case')),
+    (('けれ', 'ども'), ('CCONJ', 'CCONJ'), ('aux', 'mark')))]),
+```
 
 ## Generating masked contexts for misclassified bigrams
 

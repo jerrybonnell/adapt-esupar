@@ -36,23 +36,26 @@ if op == 0:
         # key: rule pairs predicted by the MLM of BERT
         # value: list of tuples containing context-test sentence pairs
         #        for this rule pair
-        # the MLM may predict some given rule pair from multiple different contexts
-        # this should be at most len(contexts), the total number of contexts
+        # NOTE the MLM may predict some given rule pair
+        #      from multiple different contexts
         cand_ginza = defaultdict(list)
         for context, masked_contexts, _ in tqdm(contexts):
             # [('兄貴の臑ツ嚼だの、', [('X嚼', '兄貴の臑[MASK]嚼だの、'), ('ツX', '兄貴の臑ツ[MASK]だの、')])]
             assert len(masked_contexts) % 2 == 0
             tups = []
             for rule, masked_context in masked_contexts:
+                # perform the masked predictions and collect the predicted tokens
+                # into a list; then iterate through this list
                 for tok in [res['token_str'] for res in nlp(masked_context)]:
+                    # ('×印', '封', '封印', '[MASK]印を付したるものがそれである。')
                     tups.append((query, tok, rule.replace("X", tok), masked_context))
-            assert len(tups) == len(masked_contexts) * 15 # 30 if simple case
+            assert len(tups) == len(masked_contexts) * 15
 
             for query, mask_pred, rule, masked_context in tups:
-                # test_sent = context.replace(query, rule, 1)
                 assert masked_context.count(nlp.tokenizer.mask_token) == 1
                 test_sent = masked_context.replace(
                     nlp.tokenizer.mask_token, mask_pred)
+                # check that the test sentence is not equal to the original
                 if query != rule: assert test_sent != context
                 cand_ginza[(query, mask_pred, rule)].append((context, test_sent))
         query2sents[query] = cand_ginza
