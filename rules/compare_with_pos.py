@@ -10,7 +10,7 @@ console = Console()
 
 rules_conllu = glob.glob("../../Rules2UD/annotation_041222_esupar/*.conllu")
 
-CONFIG = 0
+CONFIG = 4
 if CONFIG == 0:
     adapt_conllu = glob.glob(
         "../../Rules2UD/annotation_053122_adapt_yasuoka_char_cvg_50_upos/*.conllu")
@@ -23,17 +23,17 @@ elif CONFIG == 1:
     experiment = "esupar_norules053122"
 elif CONFIG == 2:
     adapt_conllu = glob.glob(
-        "../Rules2UD/annotation_053122_baseline-bert-base-japanese-upos/*.conllu")
+        "../../Rules2UD/annotation_053122_baseline-bert-base-japanese-upos/*.conllu")
     model = "KoichiYasuoka/bert-base-japanese-char-extended"
     experiment = "baseline-bert-base-japanese-upos_norules053122"
 elif CONFIG == 3:
     adapt_conllu = glob.glob(
-        "../Rules2UD/annotation_053122_baseline_notaiyo_yasuoka_char_cvg_upos/*.conllu")
+        "../../Rules2UD/annotation_053122_baseline_notaiyo_yasuoka_char_cvg_upos/*.conllu")
     model = "jerrybonnell053122/baseline_notaiyo_yasuoka_char_cvg"
     experiment = "baseline-notaiyo-yasuoka-char-cvg-upos_norules053122"
 elif CONFIG == 4:
     adapt_conllu = glob.glob(
-        "../Rules2UD/annotation_053122_baseline_bccwj_yasuoka_char_cvg_upos/*.conllu")
+        "../../Rules2UD/annotation_053122_baseline_bccwj_yasuoka_char_cvg_upos/*.conllu")
     model = "jerrybonnell053122/baseline_bccwj_yasuoka_char_cvg"
     experiment = "baseline-bccwj-yasuoka-char-cvg-upos_norules053122"
 else:

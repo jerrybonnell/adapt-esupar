@@ -41,6 +41,8 @@ for model in query2results_dic:
             model2noparsings[model].append(key)
     model2discovered[model] = (discovered, no_parsings)
 
+print(model2discovered)
+
 # adapt has the most rule predictions for un-predicted terms from other models
 model_predothers = []
 for model_name in models:

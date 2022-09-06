@@ -34,7 +34,7 @@ all_configs = glob.glob("chunk_q2r_esupar_adapt_norules053122/*.txt") + \
     glob.glob("chunk_q2r_esupar_baseline-bert-base-japanese-upos_norules053122/*.txt") + \
     glob.glob("chunk_q2r_esupar_baseline-notaiyo-yasuoka-char-cvg-upos_norules053122/*.txt") + \
     glob.glob("chunk_q2r_esupar_baseline-bccwj-yasuoka-char-cvg-upos_norules053122/*.txt")
-# assert len(all_configs) == 200 * 4
+assert len(all_configs) == 200 * 4
 for fn in all_configs:
     with open(fn, "r") as f:
         sents.append(f.readlines())

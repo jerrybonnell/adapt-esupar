@@ -95,7 +95,7 @@ with open("common_diffs.pkl", "wb") as f:
     pickle.dump(common_diffs, f)
 
 #### FOR DETERMINING OOV TERMS (5.2)
-with open("baseline_bccwj_yasuoka_char_cvg_train.txt", "r") as f:
+with open("../../symbolism/baseline_bccwj_yasuoka_char_cvg_train.txt", "r") as f:
     baseline_bccwj = list(set([l.strip() for l in f.readlines() if len(l.strip()) > 0]))
 
 for model_name in models:

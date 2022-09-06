@@ -11,6 +11,19 @@ conda create --name adaptesupar --file requirements.txt
 
 There are copyright issues with the corpora used in our research (TAIYO and BCCWJ) that prevent us from possibly revealing any training data used. For this reason, we are unable to directly release any model files or training data.
 
+## Overview
+
+The general flow of the scripts used in this module can be summarized as follows:
+
+```
+compare_with_pos.py -> gen_contexts.py ->   mlm_pred.py  -> prep_annotate.py
+                                       (via run_many_sym.sh)     |
+      +----------------------------------------------------------+
+      v
+  run_sent_chunk.py --> gen_cand_norm_forms.py
+(via run_sent_chunk.sh)
+```
+
 ## Flagging differences in UD output
 
 We use the script `compare_with_pos.py` to generate discrepancies in UD output between ESUPAR and each of the four models tested. Following shows a snippet of what these differneces look like:
@@ -31,7 +44,7 @@ The script `gen_contexts.py` generates masked contexts for sentences that contai
 
 The (parallelized) script `mlm_pred.py` generates MLM predictions from the masked contexts and substitutes the mask token (`[MASK]`) with each of the masked predictions to form a series of original/test sentence pairs that are to be submitted to a pretrained LM for annotation to see if UD annotation improvement is brought by the test sentence.
 
-The script `prep_annotate.py` is an intermediary step that reorganizes the sentences to be annotated over all systems into a single file so that the following annotation step can be trivially parallelized using GNU parallel. The script `run_sent_chunk.py` (together with `run_sents.sh`) implements that annotation work in parallel and produces UD annotations for each original/test sentence pair using a pretraiend LM (i.e., ESUPAR). The annotations are serialized to disk as a dictionary.
+The script `prep_annotate.py` is an intermediary step that reorganizes the sentences to be annotated over all systems into a single file so that the following annotation step can be trivially parallelized using GNU parallel. The script `run_sent_chunk.py` (together with `run_sent_chunk.sh`) implements that annotation work in parallel and produces UD annotations for each original/test sentence pair using a pretrained LM (i.e., ESUPAR). The annotations are serialized to disk as a dictionary.
 
 The script `query2context_compare.py` implements the experimental results shown in Section 5.2 using the masked context dictionary.
 

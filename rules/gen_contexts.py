@@ -48,7 +48,7 @@ def get_word_cat(char):
     return 'DEFAULT'  # default is a mandatory category
 
 # NOTE toggle the config here for each system setting
-CONFIG = 0
+CONFIG = 4
 if CONFIG == 0:
     model = "../../jerrybonnell053122/adapt_yasuoka_char_cvg_50"
     experiment = "adapt_norules053122"
@@ -59,10 +59,10 @@ elif CONFIG == 2:
     model = "KoichiYasuoka/bert-base-japanese-char-extended"
     experiment = "baseline-bert-base-japanese-upos_norules053122"
 elif CONFIG == 3:
-    model = "jerrybonnell053122/baseline_notaiyo_yasuoka_char_cvg"
+    model = "../../jerrybonnell053122/baseline_notaiyo_yasuoka_char_cvg"
     experiment = "baseline-notaiyo-yasuoka-char-cvg-upos_norules053122"
 elif CONFIG == 4:
-    model = "jerrybonnell053122/baseline_bccwj_yasuoka_char_cvg"
+    model = "../../jerrybonnell053122/baseline_bccwj_yasuoka_char_cvg"
     experiment = "baseline-bccwj-yasuoka-char-cvg-upos_norules053122"
 else:
     assert 1 == 2
